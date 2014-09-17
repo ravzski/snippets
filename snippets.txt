@@ -1,0 +1,21 @@
+#model snippers
+validates   :name, presence: true, uniqueness: true
+
+#get sum without query
+.map{|q|q.points}.inject{|sum,q|sum+q}
+
+#eager load
+User.eager_load(:posts) 
+
+#select box
+=f.select( :product_category_id,
+  options_from_collection_for_select(@categories,"id","name",
+    f.object.product_category_id),{},:class =>"form-control")
+
+
+
+=select_tag(:is_active,
+  options_for_select([['Active','1'],['Inactive','0']],params[:is_active]),
+  :class=>"form-control", :prompt => 'All’)
+
+=select_tag "status", options_from_collection_for_select(@categories, "id", "name",params[:sub_category]) , :prompt => 'All Category' ,:class =>"form-control"
